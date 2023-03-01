@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import HomeTab from '../components/HomeTab.vue'
+import LearningTab from '../components/LearningTab.vue'
+import BlogTab from '../components/BlogTab.vue'
+import AboutTab from '../components/AboutTab.vue'
 
 Vue.use(VueRouter)
 
@@ -8,16 +11,38 @@ const routes: Array<RouteConfig> = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeTab
+  },
+  {
+    path: '/learning',
+    name: 'learning',
+    component: LearningTab
+  },
+  {
+    path: '/blog',
+    name: 'blog',
+    component: BlogTab
   },
   {
     path: '/about',
     name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
+    component: AboutTab
+  },
+  {
+    path: '/question/:id',
+    name: 'question',
+    component: () => import(/* webpackChunkName: "question_details" */ '../views/QuestionView.vue')
+  },
+  {
+    path: '/learn/:id',
+    name: 'learnList',
+    component: () => import(/* webpackChunkName: "learn_details" */ '../views/Learining/LearnList.vue')
+  },
+  {
+    path: '/blog/:id',
+    name: 'blogDetail',
+    component: () => import(/* webpackChunkName: "blog_details" */ '../views/Blog/BlogDetails.vue')
+  },
 ]
 
 const router = new VueRouter({
